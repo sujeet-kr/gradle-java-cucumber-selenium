@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+}
+
+group 'sujeet.test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+configurations.all {
+}
+
+configurations {
+    agent
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+dependencies {
+    agent "org.aspectj:aspectjweaver:1.8.4"
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+    testCompile group: 'io.cucumber', name: 'cucumber-java', version: cucumberVersion
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
+    testCompile group: 'ru.yandex.qatools.allure', name: 'allure-cucumber-jvm-adaptor', version: allureCucumberJvmVersion
+    testCompile group: 'org.aspectj', name: 'aspectjweaver', version: aspectJweaverVersion
+    testCompile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: jacksonVersion
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: restAssuredVersion
+    testCompile group: 'io.rest-assured', name: 'json-schema-validator', version: restAssuredVersion
+    testCompile group: 'info.cukes', name: 'cucumber-picocontainer', version: cucumberPicoContainerVersion
+    testCompile group: 'org.tinylog', name: 'tinylog', version: tinylogVersion
+    testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
+    
+//    testCompile group: 'org.picocontainer', name: 'picocontainer', version: picoContainerVersion
+//    testCompile group: 'io.qameta.allure', name: 'allure-cucumber3-jvm', version: cucumberAllureVersion
+//    testCompile group: 'info.cukes', name: 'cucumber-java', version:'1.2.2'
+
+}
+
+
+test.doFirst {
+    jvmArgs "-Dcucumber.options=--plugin ru.yandex.qatools.allure.cucumberjvm.AllureReporter"
+}
+
+task runCucumber(type: JavaExec) {
+    dependsOn test
+
+    doLast{
+        main = "cucumber.api.cli.Main"
+        classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+        args += ['--plugin', 'pretty', '--tags', '@Ignore', '--glue', 'com.mycompany.testing', 'src/test/resources/features']
+        systemProperties project.properties.subMap(["env"])
+    }
+
+}
+ 

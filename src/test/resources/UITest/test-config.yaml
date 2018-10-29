@@ -1,0 +1,20 @@
+#URIs
+prod:
+  url-en-ca: http://www.flipp.com
+  url-fr-ca: https://www.flipp.com/accueil?locale=fr-ca
+
+local:
+  url-en-ca:
+  url-fr-ca:
+
+dev:
+  url-en-ca:
+  url-fr-ca:
+
+qa:
+  url-en-ca:
+  url-fr-ca:
+
+#WebDriver Defaults
+explicit-wait-timeout: 20
+
