@@ -6,13 +6,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-//TODO explicitWaitTimeout should come from config file
 public class ExplicitWait {
     private WebDriver driver;
-    private int explicitWaitTimeout = 10;
+    private int explicitWaitTimeout;
 
-    public ExplicitWait(WebDriver driver){
+    public ExplicitWait(WebDriver driver, int explicitWaitTimeout){
         this.driver = driver;
+        this.explicitWaitTimeout = explicitWaitTimeout;
     }
 
     private WebDriverWait expWait;

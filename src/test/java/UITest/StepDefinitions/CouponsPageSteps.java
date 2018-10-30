@@ -1,7 +1,7 @@
 package UITest.StepDefinitions;
 
 import UITest.PageObjects.CouponsPage;
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.Then;
 
 import static org.assertj.core.api.Assertions.assertThat;

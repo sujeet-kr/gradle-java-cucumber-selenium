@@ -19,7 +19,8 @@ public class DataFileReader {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         JsonNode json = null;
         try {
-            json = mapper.readTree(new File("./UI_Suite/src/main/resources/DataFiles/" + fileName));
+            json = mapper.readTree(new File(
+                    System.getProperty("user.dir") + "/src/test/resources/UITest/DataFiles/" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,7 +31,8 @@ public class DataFileReader {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         JsonNode json = null;
         try {
-            json = mapper.readTree(new File("/Users/MacJae/MyProjects/flipp-project/gradle-automation-framework/src/test/resources/UITest/" + fileName));
+            json = mapper.readTree(new File(
+                    System.getProperty("user.dir") + "/src/test/resources/UITest/" + fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
