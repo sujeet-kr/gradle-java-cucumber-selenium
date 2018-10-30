@@ -1,3 +1,4 @@
+#Selenium Test Automation Framework using Gradle, CucumberJvm and Allure 
 Usage:
 ----------------------------------------------
 
@@ -6,4 +7,4 @@ Usage:
 
 To generate Allure reports:
 ----------------------------------------------
-`allure serve` - in the parent directory holding allure-results
+`./allure-report.sh`
