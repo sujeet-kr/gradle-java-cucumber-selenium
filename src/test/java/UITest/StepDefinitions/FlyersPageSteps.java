@@ -1,8 +1,7 @@
 package UITest.StepDefinitions;
 
-import UITest.Core.Driver.StepsStartHook;
 import UITest.PageObjects.FlyersPage;
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 

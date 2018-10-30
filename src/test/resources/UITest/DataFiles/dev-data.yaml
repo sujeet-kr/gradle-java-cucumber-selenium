@@ -1,4 +1,4 @@
 #Production environment data
-url-en-ca: https://www.flipp.com/home?locale=en-ca
+url-en-ca: http://www.flipp.com
 url-fr-ca: https://www.flipp.com/accueil?locale=fr-ca
 driver-location: /Users/MacJae/WebDriverServers/

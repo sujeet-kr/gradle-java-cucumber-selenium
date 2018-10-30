@@ -15,7 +15,7 @@ Feature: Flipp Application Locale change
   Scenario: As a user I should be able to change the locale from French to English
     Given I have navigated to the landing page of Flipp in "fr-ca" locale with "Circulaires" in primary navigation
     When I change the locale from "fr-ca" to "en-ca"
-    Then I should see the url change to the "fr-ca" locale
+    Then I should see the url change to the "en-ca" locale
     And I should see the "Français" link available to change locale back to "Français"
     And I should see the "Flyers" link on the page header bar visible as "Flyers"
 

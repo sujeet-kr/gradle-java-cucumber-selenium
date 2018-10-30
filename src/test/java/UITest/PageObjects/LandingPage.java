@@ -1,6 +1,6 @@
 package UITest.PageObjects;
 
-import UITest.Core.Driver.StepsStartHook;
+import UITest.Core.Hooks;
 import UITest.HelperLibrary.ExplicitWait;
 
 import org.openqa.selenium.WebElement;
@@ -13,9 +13,9 @@ public class LandingPage {
 
     private ExplicitWait explicitWait;
 
-    public LandingPage(StepsStartHook stepsStartHook){
-        PageFactory.initElements(stepsStartHook.getDriver(), this);
-        this.explicitWait = stepsStartHook.getExplicitWait();
+    public LandingPage(Hooks hooks){
+        PageFactory.initElements(hooks.getDriver(), this);
+        this.explicitWait = hooks.getExplicitWait();
     }
 
     @FindBy(how = How.XPATH, using = "//header/nav/div[@class='secondary-nav']/a[1]")

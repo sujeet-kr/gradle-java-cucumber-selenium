@@ -1,4 +1,4 @@
-package UITest.Core.Driver;
+package UITest.Core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,13 +11,14 @@ import java.util.concurrent.TimeUnit;
 public class DriverFactory {
 
     private WebDriver driver;
-    private String driverLocation = "/Users/MacJae/WebDriverServers/";
     private String browserName;
+    private int waitTimeout;
 
-    public DriverFactory(){
-        System.setProperty("webdriver.gecko.driver", driverLocation + "geckodriver" );
+    public DriverFactory(String browserName, String driverLocation, int waitTimeout){
+        System.setProperty("webdriver.gecko.driver", driverLocation + "geckodriver");
         System.setProperty("webdriver.chrome.driver", driverLocation + "chromedriver");
-        browserName = "Chrome";
+        this.browserName = browserName;
+        this.waitTimeout = waitTimeout;
     }
 
     public WebDriver createWebDriver() throws Exception {
@@ -38,8 +39,7 @@ public class DriverFactory {
                 throw new Exception();
         }
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(this.waitTimeout, TimeUnit.SECONDS);
         return driver;
     }
-
 }

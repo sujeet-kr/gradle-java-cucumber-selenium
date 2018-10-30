@@ -1,6 +1,6 @@
 package UITest.StepDefinitions;
 
-import UITest.Core.Driver.StepsStartHook;
+import UITest.Core.Hooks;
 import UITest.PageObjects.LandingPage;
 
 import cucumber.api.java.en.And;
@@ -12,25 +12,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LandingPageSteps {
     private LandingPage landingPage;
-    private StepsStartHook stepsStartHook;
+    private Hooks hooks;
 
-    public LandingPageSteps (LandingPage landingPage, StepsStartHook stepsStartHook ){
+    public LandingPageSteps (LandingPage landingPage, Hooks hooks){
         this.landingPage = landingPage;
-        this.stepsStartHook = stepsStartHook;
+        this.hooks = hooks;
     }
 
     @When("^I change the locale from \"([^\"]*)\" to \"([^\"]*)\"$")
     public void iChangeTheLocaleFromTo(String fromLocale, String toLocale) throws Throwable {
         landingPage.changeLocale(fromLocale, toLocale);
-        assertThat(landingPage.getLnkFlyers().getText()).isEqualToIgnoringCase("Circulaires");
+//        assertThat(landingPage.getLnkFlyers().getText()).isEqualToIgnoringCase("Circulaires");
     }
 
     @Given("^I have navigated to the landing page of Flipp in \"([^\"]*)\" locale with \"([^\"]*)\" in primary navigation$")
     public void iHaveNavigatedToTheLandingPageOfFlippInLocaleWithInPrimaryNavigation(String locale, String assertionText) throws Throwable {
         if (locale.equalsIgnoreCase("en-ca")){
-            stepsStartHook.getDriver().get(stepsStartHook.getDataFileReader().getEnvironmentData().get("prod").get("url-en-ca").asText());
+            hooks.getDriver().get(hooks.getDataFile().get("url-en-ca").asText());
         } else {
-            stepsStartHook.getDriver().get(stepsStartHook.getDataFileReader().getEnvironmentData().get("prod").get("url-fr-ca").asText());
+            hooks.getDriver().get(hooks.getDataFile().get("url-fr-ca").asText());
         }
         assertThat(landingPage.getLnkFlyers().getText()).isEqualToIgnoringCase(assertionText);
     }
@@ -41,13 +41,12 @@ public class LandingPageSteps {
     }
 
 
-    //TODO add login to call url from data file
     @Then("^I should see the url change to the \"([^\"]*)\" locale$")
     public void iShouldSeeTheUrlChangeToTheLocale(String locale) throws Throwable {
-        if(locale.equalsIgnoreCase("en-ca")){
-            assertThat(stepsStartHook.getDriver().getCurrentUrl().toString()).isEqualToIgnoringCase("");
+        if(locale.equalsIgnoreCase("fr-ca")){
+            assertThat(hooks.getDriver().getCurrentUrl()).isEqualToIgnoringCase(hooks.getDataFile().get("url-fr-ca").asText());
         } else {
-            assertThat(stepsStartHook.getDriver().getCurrentUrl().toString()).isEqualToIgnoringCase("https://www.flipp.com/accueil?locale=fr-ca");
+            assertThat(hooks.getDriver().getCurrentUrl()).isEqualToIgnoringCase(hooks.getDataFile().get("url-en-ca").asText());
         }
     }
 

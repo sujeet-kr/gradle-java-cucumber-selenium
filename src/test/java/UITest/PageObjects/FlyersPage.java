@@ -1,7 +1,8 @@
 package UITest.PageObjects;
 
-import UITest.Core.Driver.StepsStartHook;
+import UITest.Core.Hooks;
 import UITest.HelperLibrary.ExplicitWait;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -11,9 +12,9 @@ public class FlyersPage {
 
     private ExplicitWait explicitWait;
 
-    public FlyersPage(StepsStartHook stepsStartHook){
-        PageFactory.initElements(stepsStartHook.getDriver(), this);
-        this.explicitWait = stepsStartHook.getExplicitWait();
+    public FlyersPage(Hooks hooks){
+        PageFactory.initElements(hooks.getDriver(), this);
+        this.explicitWait = hooks.getExplicitWait();
     }
 
     @FindBy(how = How.ID, using ="coupons-link")

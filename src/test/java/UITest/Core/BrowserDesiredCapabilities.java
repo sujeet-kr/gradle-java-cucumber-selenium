@@ -1,4 +1,4 @@
-package UITest.Core.Driver;
+package UITest.Core;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
